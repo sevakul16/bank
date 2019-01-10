@@ -2,10 +2,10 @@
 session_start();
 require 'vendor/autoload.php';
 require 'Models.php';
-$app = new \atk4\ui\App ('Debts');
+$app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
-$client = new Client($db);
+//$client = new Client($db);
 $form = $app ->layout ->add('Form');
 $form -> setModel(new Client($db));
 $form -> onSubmit(function($form) {

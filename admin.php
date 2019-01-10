@@ -2,7 +2,7 @@
 session_start();
 require 'vendor/autoload.php';
 require 'Models.php';
-$app = new \atk4\ui\App ('Debts');
+$app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
 $image = $app->add(['Image','https://fortunedotcom.files.wordpress.com/2017/04/gettyimages-157418272.jpg']);

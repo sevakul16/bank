@@ -21,6 +21,7 @@ Class Accounts extends \atk4\data\Model {
     parent::init();
     $this -> addField('acc_num');
     $this -> addField('money');
+    $this -> addField('currency');
     $this -> hasOne('client_id',new Client);
   }
 }
