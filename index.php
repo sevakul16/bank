@@ -30,3 +30,6 @@ $log -> onSubmit(function($log) use ($user){
 
 $button = $app -> add(['Button','Register a profile']);
 $button -> link(['register']);
+unset($_SESSION['timer']);
+unset($_SESSION['t']);
+unset($_SESSION['flag']);
