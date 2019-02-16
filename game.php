@@ -5,22 +5,6 @@ require 'Models.php';
 $app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
-$modal = $app ->add(['Modal','title'=>'figna']);
-$modal -> add(['Text','You lost! Good luck next time']);
-
-if (($_SESSION['t'] <= 10) and ($_SESSION['i'] >= 20)) {
-  //$_SESSION['t'] = 0;
-  new \atk4\ui\jsExpression('document.location="prize.php"');
-//  header('location:prize.php');
-}
-if ($_SESSION['t'] > 10) {
-//  $_SESSION['t'] = 0;
-  $_SESSION['i'] = 0;
-  $modal -> show();
-//  $vp = $app->add('VirtualPage');
-//  $vp->add('Text','You lost! Good luck next time');
-}
-
 $now = time();
 
 if (!isset($_SESSION['flag'])){
@@ -29,22 +13,24 @@ if (!isset($_SESSION['flag'])){
 
 $_SESSION['t'] = $now -$_SESSION['timer'];
 
-
  $button = $app ->add(['Button','Touch me','big red']);
-if ($_SESSION['i'] < 20) {
- $button -> on('click', function($action){
-   if ($_SESSION['i'] < 20) {
 
+ $button -> on('click', function($action){
+   if (($_SESSION['t'] <= 10) and ($_SESSION['i'] >= 10)) {
+    return new \atk4\ui\jsExpression('document.location="prize.php"');
+   }
+   if ($_SESSION['t'] > 10) {
+      return new \atk4\ui\jsExpression('document.location="loser.php"');
+   }
    $_SESSION['i']=$_SESSION['i']+1;
    $_SESSION['flag'] = true;
    return $action->text($_SESSION['i']);
- 
+
  });
-}
 /*
  $button2 = $app->add('Button');
 
  $button2->on('click', function ($action){
    $_SESSION['flag'] = true;
    return $action ->text($_SESSION['t']);
- }); */
+ });*/
