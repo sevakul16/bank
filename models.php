@@ -20,9 +20,25 @@ Class Accounts extends \atk4\data\Model {
   Function init() {
     parent::init();
     $this -> addField('acc_num');
-    $this -> addField('money');
     $this -> addField('currency');
-
+    $this -> addField('money');
+    /*if ($this['currency']=='USD') {
+      $this -> addField('money',['type'=>'money','prefix'=>'$']);
+    }
+    if ($this['currency']=='RUR') {
+      $this -> addField('money',['type'=>'money','prefix'=>'₽']);
+    } else {
+      $this -> addField('money',['type'=>'money','prefix'=>'F']);
+    }  */
     $this -> hasOne('client_id',new Client);
+  }
+}
+
+Class Currency extends \atk4\data\Model {
+  public $table ='currency';
+  Function init() {
+    parent::init();
+    $this ->addField('name');
+    $this ->addField('coeff');
   }
 }

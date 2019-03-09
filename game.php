@@ -5,6 +5,8 @@ require 'Models.php';
 $app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
+if (isset($_SESSION['id'])==true) {
+
 $now = time();
 
 if (!isset($_SESSION['flag'])){
@@ -27,6 +29,9 @@ $_SESSION['t'] = $now -$_SESSION['timer'];
    return $action->text($_SESSION['i']);
 
  });
+} else {
+  Header('location:index.php');
+}
 /*
  $button2 = $app->add('Button');
 

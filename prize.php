@@ -5,6 +5,8 @@ require 'Models.php';
 $app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
+if (isset($_SESSION['id'])==true) {
+
 $app -> add(['Header','You have won 50 EUR! On which acc you want them to transfer them']);
 $image = $app->add(['Image','https://www.stockworld.com.ua/media/cache/news/uploads/news/5bd0315e64d4979220008355/48d235ed.jpg']);
 
@@ -23,4 +25,7 @@ foreach ($acc as $shot) {
     $shot -> save();
     return new \atk4\ui\jsExpression('document.location="main.php"');
   });
+}
+} else {
+  Header('location:index.php');
 }

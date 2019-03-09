@@ -5,6 +5,8 @@ require 'Models.php';
 $app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
+if (isset($_SESSION['id'])==true) {
+
 $client = new Client($db);
 $client -> load($_SESSION['id']);
 $acc = $client->ref('Accounts');
@@ -22,3 +24,7 @@ $button2 = $app -> add(['Button','Transact your money']);
 $button2 -> link(['perevod']);
 $button3 = $app -> add(['Button','Minigame!']);
 $button3 -> link(['game']);
+
+} else {
+  Header('location:index.php');
+}

@@ -5,9 +5,8 @@ require 'Models.php';
 $app = new \atk4\ui\App ('Bank');
 $app->initLayout('Centered');
 
-//$client = new Client($db);
-//$client -> load($_SESSION['client_id']);
-//$accounts = $client -> ref('Accounts');
+if (isset($_SESSION['id'])==true) {
+
 
 $form = $app ->layout ->add('Form');
 $form -> setModel(new Accounts($db),['currency']);
@@ -22,3 +21,6 @@ $form -> onSubmit(function($form) {
   $form->model->save();
   return new \atk4\ui\jsExpression('document.location="main.php"');
 });
+} else {
+  Header('location:index.php');
+}
